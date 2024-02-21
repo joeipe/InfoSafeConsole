@@ -5,11 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-//var builder = new ConfigurationBuilder();
-//BuildConfig(builder);
+var configuration = BuildConfig()
+    .Build();
 
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
+    .ReadFrom.Configuration(configuration)
     .CreateLogger();
 
 Log.Information("Starting up");
@@ -37,10 +37,9 @@ finally
     Log.CloseAndFlush();
 }
 
-
-IHostBuilder CreateHostBuilder(string[] strings)
+IHostBuilder CreateHostBuilder(string[] args)
 {
-    var builder = Host.CreateDefaultBuilder();
+    var builder = Host.CreateDefaultBuilder(args);
 
     builder.ConfigureServices((context, services) =>
     {
@@ -51,9 +50,13 @@ IHostBuilder CreateHostBuilder(string[] strings)
     return builder;
 }
 
-void BuildConfig(IConfigurationBuilder builder)
+IConfigurationBuilder BuildConfig()
 {
-    builder.SetBasePath(Directory.GetCurrentDirectory())
+    var builder = new ConfigurationBuilder();
+
+    builder
       .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
       .AddEnvironmentVariables();
+
+    return builder;
 }
