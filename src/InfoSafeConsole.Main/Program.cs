@@ -1,8 +1,10 @@
 ﻿using InfoSafeConsole.Application;
+using InfoSafeConsole.Application.Interfaces;
 using InfoSafeConsole.Main;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 using Serilog;
 
 var configuration = BuildConfig()
@@ -43,6 +45,13 @@ IHostBuilder CreateHostBuilder(string[] args)
 
     builder.ConfigureServices((context, services) =>
     {
+        services.AddHttpClient<IInfoSafeService, InfoSafeService>(client =>
+        {
+            client.BaseAddress = new Uri("http://localhost:5019");
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+        });
+
         services.AddSingleton<IAppService, AppService>();
         services.AddSingleton<App>();
     });

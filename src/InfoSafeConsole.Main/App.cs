@@ -1,4 +1,4 @@
-﻿using InfoSafeConsole.Application;
+﻿using InfoSafeConsole.Application.Interfaces;
 
 namespace InfoSafeConsole.Main
 {
