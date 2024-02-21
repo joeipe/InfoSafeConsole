@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoSafeConsole.Main", "InfoSafeConsole.Main\InfoSafeConsole.Main.csproj", "{B3D60459-6E8E-44B8-A0A0-D9358F45AC87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoSafeConsole.Application", "InfoSafeConsole.Application\InfoSafeConsole.Application.csproj", "{0F67A0BE-E996-436A-AFDE-06D87C67223B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoSafeConsole.Application", "InfoSafeConsole.Application\InfoSafeConsole.Application.csproj", "{0F67A0BE-E996-436A-AFDE-06D87C67223B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{8C3967F6-A000-43E8-9F23-25075F467086}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0F67A0BE-E996-436A-AFDE-06D87C67223B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F67A0BE-E996-436A-AFDE-06D87C67223B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F67A0BE-E996-436A-AFDE-06D87C67223B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C3967F6-A000-43E8-9F23-25075F467086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C3967F6-A000-43E8-9F23-25075F467086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C3967F6-A000-43E8-9F23-25075F467086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C3967F6-A000-43E8-9F23-25075F467086}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

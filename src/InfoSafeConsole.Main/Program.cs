@@ -22,12 +22,9 @@ try
         .UseSerilog()
         .Build();
 
-    //IConfiguration config = host.Services.GetRequiredService<IConfiguration>();
-    //var val = config.GetConnectionString("DBConnectionString");
-
     using var scope = host.Services.CreateScope();
     var services = scope.ServiceProvider;
-    services.GetRequiredService<App>().Run(args);
+    await services.GetRequiredService<App>().RunAsync(args);
 }
 catch (Exception ex)
 {
@@ -45,9 +42,11 @@ IHostBuilder CreateHostBuilder(string[] args)
 
     builder.ConfigureServices((context, services) =>
     {
+        var val = context.Configuration.GetConnectionString("DBConnectionString");
+
         services.AddHttpClient<IInfoSafeService, InfoSafeService>(client =>
         {
-            client.BaseAddress = new Uri("http://localhost:5019");
+            client.BaseAddress = new Uri(context.Configuration.GetValue<string>("ApiClient:InfoSafeUri"));
             client.DefaultRequestHeaders.Clear();
             client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
         });
@@ -64,8 +63,9 @@ IConfigurationBuilder BuildConfig()
     var builder = new ConfigurationBuilder();
 
     builder
-      .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-      .AddEnvironmentVariables();
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddEnvironmentVariables();
 
     return builder;
 }

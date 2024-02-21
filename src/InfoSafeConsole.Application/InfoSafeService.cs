@@ -1,7 +1,7 @@
-﻿using InfoSafeConsole.Application.Extensions;
-using InfoSafeConsole.Application.Interfaces;
+﻿using InfoSafeConsole.Application.Interfaces;
 using InfoSafeConsole.Application.ViewModels;
 using Microsoft.Extensions.Logging;
+using SharedKernel.Extensions;
 
 namespace InfoSafeConsole.Application
 {

@@ -16,11 +16,9 @@ namespace InfoSafeConsole.Application
             _infoSafeService = infoSafeService;
         }
 
-        public async Task CalculateCustomerAge(int id)
+        public void CalculateCustomerAge(int id)
         {
             _logger.LogInformation("{Class}.{Action} start", nameof(AppService), nameof(CalculateCustomerAge));
-
-            var result = await _infoSafeService.GetFullContactsAsync();
 
             Console.WriteLine("CustomerService:CalculateCustomerAge runs");
         }
