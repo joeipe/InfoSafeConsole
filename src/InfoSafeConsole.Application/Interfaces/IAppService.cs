@@ -2,6 +2,6 @@
 {
     public interface IAppService
     {
-        void CalculateCustomerAge(int id);
+        Task<int> CalculateCustomerAgeAsync(int id);
     }
 }

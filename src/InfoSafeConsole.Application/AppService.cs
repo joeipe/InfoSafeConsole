@@ -1,5 +1,6 @@
 ﻿using InfoSafeConsole.Application.Interfaces;
 using Microsoft.Extensions.Logging;
+using System.Reflection.Metadata;
 
 namespace InfoSafeConsole.Application
 {
@@ -16,11 +17,12 @@ namespace InfoSafeConsole.Application
             _infoSafeService = infoSafeService;
         }
 
-        public void CalculateCustomerAge(int id)
+        public async Task<int> CalculateCustomerAgeAsync(int id)
         {
-            _logger.LogInformation("{Class}.{Action} start", nameof(AppService), nameof(CalculateCustomerAge));
+            _logger.LogInformation("{Class}.{Action} start", nameof(AppService), nameof(CalculateCustomerAgeAsync));
 
-            Console.WriteLine("CustomerService:CalculateCustomerAge runs");
+            var retval = await Task.Run(() => id);
+            return retval;
         }
     }
 }
