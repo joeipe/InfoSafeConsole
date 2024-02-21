@@ -1,5 +1,4 @@
-﻿using InfoSafeConsole.Application;
-using InfoSafeConsole.Application.Interfaces;
+﻿using InfoSafeConsole.Application.Interfaces;
 using Microsoft.Extensions.Logging;
 using SharedKernel.Extensions;
 
@@ -13,7 +12,7 @@ namespace InfoSafeConsole.Main
 
         public App(
             ILogger<App> logger,
-            IAppService appService, 
+            IAppService appService,
             IInfoSafeService infoSafeService)
         {
             _logger = logger;

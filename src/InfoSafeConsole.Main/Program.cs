@@ -1,6 +1,7 @@
 ﻿using InfoSafeConsole.Application;
 using InfoSafeConsole.Application.Interfaces;
 using InfoSafeConsole.Main;
+using InfoSafeConsole.Main.HttpHandlers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -42,17 +43,17 @@ IHostBuilder CreateHostBuilder(string[] args)
 
     builder.ConfigureServices((context, services) =>
     {
-        var val = context.Configuration.GetConnectionString("DBConnectionString");
+        services.AddScoped<BearerTokenHandler>();
+        services.AddSingleton<IAppService, AppService>();
+        services.AddSingleton<App>();
 
         services.AddHttpClient<IInfoSafeService, InfoSafeService>(client =>
         {
             client.BaseAddress = new Uri(context.Configuration.GetValue<string>("ApiClient:InfoSafeUri"));
             client.DefaultRequestHeaders.Clear();
             client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-        });
-
-        services.AddSingleton<IAppService, AppService>();
-        services.AddSingleton<App>();
+        })
+            .AddHttpMessageHandler<BearerTokenHandler>();
     });
 
     return builder;
