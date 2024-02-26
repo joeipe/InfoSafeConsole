@@ -26,6 +26,7 @@ namespace InfoSafeConsole.Main
 
             //Task 1
             var age = await _appService.CalculateCustomerAgeAsync(1);
+            _logger.LogInformation(age.OutputJson());
 
             //Task 2
             var contacts = await _infoSafeService.GetFullContactsAsync();
